@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2022.02.10 16:14:55.906,=D:\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022.02.10 16:14:55.959,=D:\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022.02.10 16:21:48.190,D:\Projects\HiTy\uHiTy.cpp=D:\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022.02.10 16:21:48.190,D:\Projects\HiTy\uHiTy.h=D:\Projects\Unit1.h</Transaction>
+    <Transaction>2022.02.10 16:21:48.190,D:\Projects\HiTy\uHiTy.dfm=D:\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022.02.10 16:21:55.569,D:\Projects\HiTy\Project1PCH1.h=D:\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022.02.10 16:24:06.175,D:\Projects\HiTy\pHiTyPCH1.h=D:\Projects\HiTy\Project1PCH1.h</Transaction>
+    <Transaction>2022.02.10 16:24:06.190,D:\Projects\HiTy\pHiTy.cbproj=D:\Projects\Project1.cbproj</Transaction>
+    <Transaction>2022.02.10 16:24:24.297,D:\Projects\HiTy\HiTyPCH1.h=D:\Projects\HiTy\pHiTyPCH1.h</Transaction>
+    <Transaction>2022.02.10 16:24:24.297,D:\Projects\HiTy\HiTy.cbproj=D:\Projects\HiTy\pHiTy.cbproj</Transaction>
+    <Transaction>2022.02.11 14:26:28.071,=D:\Projects\HiTy\Unit1.cpp</Transaction>
+    <Transaction>2022.02.11 14:28:00.607,D:\Projects\HiTy\uTxtStor.h=D:\Projects\HiTy\Unit1.h</Transaction>
+    <Transaction>2022.02.11 14:28:00.607,D:\Projects\HiTy\uTxtStor.cpp=D:\Projects\HiTy\Unit1.cpp</Transaction>
+  </Transactions>
+</BorlandProject>
