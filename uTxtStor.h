@@ -23,6 +23,7 @@ class TWord
 	  void Init(const String NewWord);
 	  TWordStaus TypeChar(wchar_t c);
 	  int GetPos() {return Pos;};
+	  String GetText() {return w;};
 };
 
 class TStor
@@ -39,6 +40,7 @@ class TStor
 		void ClearWords();
 		TWord GetWord(int Pos);
 		int TypeChar(wchar_t c);
+		int GetWordCount() {return WordCount;};
 };
 
 

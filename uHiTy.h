@@ -16,6 +16,8 @@
 #include <map>
 #include <set>
 
+#include "uTxtStor.h"
+
 //---------------------------------------------------------------------------
 class TfrmMain : public TForm
 {
@@ -40,6 +42,7 @@ private:	// User declarations
   std::set<char> term;
   String text;
   TCanvas *Can;
+  TStor Stor;
 public:		// User declarations
 	__fastcall TfrmMain(TComponent* Owner);
 };

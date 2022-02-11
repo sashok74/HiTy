@@ -82,11 +82,24 @@ void __fastcall TfrmMain::Button1Click(TObject *Sender)
 void __fastcall TfrmMain::Button2Click(TObject *Sender)
 {
   TRect Rect = OutField->ClientRect;
-  Can->Font->Height = 20;
+  Can->Font->Height = 25;
   Can->Font->Color = clBlack;
   Can->TextRect(Rect, 10,10, "просто текст");
   int shift = Can->TextWidth("просто текст ");
   text = "";
+
+  Stor.AddWord("Слово");
+  Stor.AddWord("дело");
+  Stor.AddWord("тест");
+  TWord w;
+  int x = 0;
+
+  for (int i = 0; i < Stor.GetWordCount() ; i++) {
+	w = Stor.GetWord(i);
+	Can->TextOut(x,10, w.GetText());
+	x += Can->TextWidth(w.GetText() + " ");
+  }
+
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
