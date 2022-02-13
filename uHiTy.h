@@ -13,10 +13,12 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <iostream>
 #include <fstream>
+#include <memory>
 #include <map>
 #include <set>
 
 #include "uTxtStor.h"
+#include "uBuf.h"
 
 //---------------------------------------------------------------------------
 class TfrmMain : public TForm
@@ -28,6 +30,7 @@ __published:	// IDE-managed Components
 	TButton *Button1;
 	TButton *Button2;
 	TImage *OutField;
+	TLabel *Label1;
 	void __fastcall btnOptnFileClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
@@ -40,9 +43,11 @@ private:	// User declarations
   std::map<String, int> m;
   void print_map(const std::map<String, int>& m);
   std::set<char> term;
-  String text;
   TCanvas *Can;
-  TStor Stor;
+  std::shared_ptr<TStor> Stor;
+  std::shared_ptr<TDisplayText> Disp;
+  void PrintText ();
+  void PrintWord (bool space, TColor Color, const String w, int &x);
 public:		// User declarations
 	__fastcall TfrmMain(TComponent* Owner);
 };

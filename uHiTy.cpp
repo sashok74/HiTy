@@ -12,7 +12,9 @@ TfrmMain *frmMain;
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	: TForm(Owner)
 {
+  Stor = std::make_shared<TStor> ();
   Can = OutField->Canvas;
+  Disp = std::make_shared<TDisplayText> (Can);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::btnOptnFileClick(TObject *Sender)
@@ -81,27 +83,65 @@ void __fastcall TfrmMain::Button1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::Button2Click(TObject *Sender)
 {
-  TRect Rect = OutField->ClientRect;
-  Can->Font->Height = 25;
-  Can->Font->Color = clBlack;
-  Can->TextRect(Rect, 10,10, "просто текст");
-  int shift = Can->TextWidth("просто текст ");
-  text = "";
+  Stor->ClearWords();
+  Stor->AddWord("слово");
+  Stor->AddSpace();
+  Stor->AddWord("дело");
+  Stor->AddSpace();
+  Stor->AddWord("тест");
+  //PrintText ();
+  Disp->Start(Stor);
+}
+//---------------------------------------------------------------------------
 
-  Stor.AddWord("Слово");
-  Stor.AddWord("дело");
-  Stor.AddWord("тест");
-  TWord w;
-  int x = 0;
+void TfrmMain::PrintText ()
+{
+  String text = "";
+  int x = 10;
+  Can->Font->Size  = 30;
+  String w;
+  int pos;
+  bool space = false;
+  //Can->FillRect(Can->ClipRect);
 
-  for (int i = 0; i < Stor.GetWordCount() ; i++) {
-	w = Stor.GetWord(i);
-	Can->TextOut(x,10, w.GetText());
-	x += Can->TextWidth(w.GetText() + " ");
+  for (int i = 0; i < Stor->GetWordCount() ; i++) {
+	  w = Stor->GetWord(i)->GetText();
+	  pos = Stor->GetWord(i)->GetPos() ;
+	  switch (Stor->GetWord(i)->GetStatus()) {
+		case wsPrinted :
+			 PrintWord (space, clGray, w, x); break;
+		case wsReady :
+			 PrintWord (space, clBlack, w, x); break;
+		case wsPrinting :
+			 PrintWord (space, clTeal,  w.SubString(1,pos - 1), x);
+			 PrintWord (false, clBlack, w.SubString(pos,1), x);
+			 PrintWord (false, clTeal,  w.SubString(pos + 1, w.Length() - pos), x);
+			 break;
+		case wsError :
+			 PrintWord (space, clTeal,  w.SubString(1,pos - 1), x);
+			 PrintWord (false, clRed,   w.SubString(pos,1), x);
+			 PrintWord (false, clTeal,  w.SubString(pos + 1, w.Length() - pos), x);
+			 break;
+	  default:
+            PrintWord (space, clBlack, w, x); break;
+		  ;
+	  }
+      space = true;
   }
 
 }
-//---------------------------------------------------------------------------
+
+void TfrmMain::PrintWord (bool space, TColor Color, const String w, int &x)
+{
+   if (space) {
+	 Can->TextOut(x,10," ");
+	 x += Can->TextWidth(" ");
+   }
+   Can->Font->Color = Color;
+   Can->TextOut(x,10, w);
+   x += Can->TextWidth(w);
+}
+
 void __fastcall TfrmMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 
 {
@@ -110,8 +150,9 @@ void __fastcall TfrmMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Sh
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::FormKeyPress(TObject *Sender, System::WideChar &Key)
 {
-  text = text + WideChar(Key);
-  Can->TextOut(10,10, text);
+  int i = Stor->TypeChar (WideChar(Key));
+  PrintText ();
+  Label1->Caption = IntToStr(i);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::FormKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)

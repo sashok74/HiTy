@@ -23,6 +23,19 @@ object frmMain: TfrmMain
     Height = 137
     Align = alTop
   end
+  object Label1: TLabel
+    Left = 24
+    Top = 143
+    Width = 22
+    Height = 54
+    Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -40
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
   object btnOptnFile: TButton
     Left = 32
     Top = 248
@@ -30,6 +43,7 @@ object frmMain: TfrmMain
     Height = 25
     Caption = 'Optn File'
     TabOrder = 0
+    TabStop = False
     OnClick = btnOptnFileClick
   end
   object Memo: TMemo
@@ -46,6 +60,7 @@ object frmMain: TfrmMain
     Height = 25
     Caption = 'Button1'
     TabOrder = 2
+    TabStop = False
     OnClick = Button1Click
   end
   object Button2: TButton
@@ -55,10 +70,11 @@ object frmMain: TfrmMain
     Height = 25
     Caption = 'Button1'
     TabOrder = 3
+    TabStop = False
     OnClick = Button2Click
   end
   object OpenDialog: TOpenDialog
-    Left = 56
-    Top = 304
+    Left = 176
+    Top = 352
   end
 end
