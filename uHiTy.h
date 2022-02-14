@@ -34,9 +34,7 @@ __published:	// IDE-managed Components
 	void __fastcall btnOptnFileClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
-	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
-	void __fastcall FormKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 private:	// User declarations
   std::fstream file;
   char str[1000];
@@ -46,8 +44,6 @@ private:	// User declarations
   TCanvas *Can;
   std::shared_ptr<TStor> Stor;
   std::shared_ptr<TDisplayText> Disp;
-  void PrintText ();
-  void PrintWord (bool space, TColor Color, const String w, int &x);
 public:		// User declarations
 	__fastcall TfrmMain(TComponent* Owner);
 };

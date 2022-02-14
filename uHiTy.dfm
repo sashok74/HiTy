@@ -11,9 +11,7 @@ object frmMain: TfrmMain
   Font.Name = 'Segoe UI'
   Font.Style = []
   KeyPreview = True
-  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
-  OnKeyUp = FormKeyUp
   PixelsPerInch = 96
   TextHeight = 15
   object OutField: TImage

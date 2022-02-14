@@ -94,70 +94,10 @@ void __fastcall TfrmMain::Button2Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void TfrmMain::PrintText ()
-{
-  String text = "";
-  int x = 10;
-  Can->Font->Size  = 30;
-  String w;
-  int pos;
-  bool space = false;
-  //Can->FillRect(Can->ClipRect);
-
-  for (int i = 0; i < Stor->GetWordCount() ; i++) {
-	  w = Stor->GetWord(i)->GetText();
-	  pos = Stor->GetWord(i)->GetPos() ;
-	  switch (Stor->GetWord(i)->GetStatus()) {
-		case wsPrinted :
-			 PrintWord (space, clGray, w, x); break;
-		case wsReady :
-			 PrintWord (space, clBlack, w, x); break;
-		case wsPrinting :
-			 PrintWord (space, clTeal,  w.SubString(1,pos - 1), x);
-			 PrintWord (false, clBlack, w.SubString(pos,1), x);
-			 PrintWord (false, clTeal,  w.SubString(pos + 1, w.Length() - pos), x);
-			 break;
-		case wsError :
-			 PrintWord (space, clTeal,  w.SubString(1,pos - 1), x);
-			 PrintWord (false, clRed,   w.SubString(pos,1), x);
-			 PrintWord (false, clTeal,  w.SubString(pos + 1, w.Length() - pos), x);
-			 break;
-	  default:
-            PrintWord (space, clBlack, w, x); break;
-		  ;
-	  }
-      space = true;
-  }
-
-}
-
-void TfrmMain::PrintWord (bool space, TColor Color, const String w, int &x)
-{
-   if (space) {
-	 Can->TextOut(x,10," ");
-	 x += Can->TextWidth(" ");
-   }
-   Can->Font->Color = Color;
-   Can->TextOut(x,10, w);
-   x += Can->TextWidth(w);
-}
-
-void __fastcall TfrmMain::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
-
-{
-	int a = 1;
-}
-//---------------------------------------------------------------------------
 void __fastcall TfrmMain::FormKeyPress(TObject *Sender, System::WideChar &Key)
 {
   int i = Stor->TypeChar (WideChar(Key));
-  PrintText ();
+  //PrintText ();
   Label1->Caption = IntToStr(i);
-}
-//---------------------------------------------------------------------------
-void __fastcall TfrmMain::FormKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
-
-{
-	int a = 1;
 }
 //---------------------------------------------------------------------------

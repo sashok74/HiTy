@@ -17,19 +17,24 @@ class TWordInfo {
 	String w;
 	int Line;
 	int Left;
+	int Top;
 	TColor Color;
 	int IdentPos;
-	PDisplayText Disp;
-	void ShowWord();
+	TDisplayText *Disp;
   public:
-	  TWordInfo(PDisplayText pDisp) : Disp{pDisp}, w{' '}, Line{0}, Left{0}, Color{clBlack}, IdentPos{NO_UDENT}
-		   {ShowWord()} ;
-	  void Init(const String newWord);
+	  TWordInfo(TDisplayText* pDisp, String newW = ' ') : Disp{pDisp}, w{newW}, Line{0}, Left{0}, Top{0}, Color{clBlack}, IdentPos{NO_UDENT}
+		   {};
+	  void SetText(const String newWord);
 	  void SetColor (TColor newColor);
 	  void SetIdentPos (int newPos) {
 		IdentPos = (newPos > 0 && newPos < w.Length() ? newPos : NO_UDENT);
 	  };
+	  int GetWidth();
+	  void DisplayWord();
+	  void SetPos (const int X, const int Y) {Left = X; Top = Y;};
 };
+typedef std::shared_ptr<TWordInfo> PWordInfo;
+
 
 class TDisplayText {
   private:
@@ -41,13 +46,13 @@ class TDisplayText {
 //	TFont CurFont;
 	TCanvas* Can;
 	std::shared_ptr<TStor> Stor;
-	std::map<int,TWordInfo> Words;
-	void DisplayBuf();
-	void PrintWord (bool space, TColor Color, const String w, int &x);
-	void AddBuf();
+	std::map<int,TWordInfo*> Words;
+	void LoadBuf();
+	void AddBuf(String newWord);
   public:
-	TDisplayText (TCanvas* Canvas) : Can{Canvas}, StartInd{0}, NextInd{0} curX{10} cueY{10}, curLine{0};
-	void Start (std::shared_ptr<TStor> newStor) {Stor = newStor; DisplayBuf();};
+	TDisplayText (TCanvas* Canvas) : Can{Canvas}, StartInd{0}, NextInd{0}, curX{10}, curY{10}, curLine{0} {};
+	void Start (std::shared_ptr<TStor> newStor) {Stor = newStor; LoadBuf();};
+	TCanvas* GetCanvas() {return Can;};
 };
 
 
