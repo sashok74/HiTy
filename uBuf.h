@@ -31,7 +31,7 @@ class TWordInfo {
 	  };
 	  int GetWidth();
 	  void DisplayWord();
-	  void SetPos (const int X, const int Y) {Left = X; Top = Y;};
+	  void SetPos (const int X, const int Y, const int newLine) {Left = X; Top = Y; Line = newLine;};
 };
 typedef std::shared_ptr<TWordInfo> PWordInfo;
 
@@ -49,10 +49,12 @@ class TDisplayText {
 	std::map<int,TWordInfo*> Words;
 	void LoadBuf();
 	void AddBuf(String newWord);
-  public:
+   public:
 	TDisplayText (TCanvas* Canvas) : Can{Canvas}, StartInd{0}, NextInd{0}, curX{10}, curY{10}, curLine{0} {};
 	void Start (std::shared_ptr<TStor> newStor) {Stor = newStor; LoadBuf();};
 	TCanvas* GetCanvas() {return Can;};
+	int FildWidth () { return Can->ClipRect.Width(); };
+	int FildHeight () { return Can->ClipRect.Height(); };
 };
 
 

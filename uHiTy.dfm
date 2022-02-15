@@ -3,7 +3,7 @@ object frmMain: TfrmMain
   Top = 0
   Caption = 'Hi Typing !'
   ClientHeight = 441
-  ClientWidth = 624
+  ClientWidth = 684
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,10 +16,10 @@ object frmMain: TfrmMain
   TextHeight = 15
   object OutField: TImage
     Left = 0
-    Top = 0
-    Width = 624
-    Height = 137
-    Align = alTop
+    Top = 416
+    Width = 684
+    Height = 25
+    Align = alBottom
   end
   object Label1: TLabel
     Left = 24
@@ -45,8 +45,8 @@ object frmMain: TfrmMain
     OnClick = btnOptnFileClick
   end
   object Memo: TMemo
-    Left = 248
-    Top = 240
+    Left = 304
+    Top = 259
     Width = 353
     Height = 161
     TabOrder = 1

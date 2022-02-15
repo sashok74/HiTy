@@ -13,7 +13,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	: TForm(Owner)
 {
   Stor = std::make_shared<TStor> ();
-  Can = OutField->Canvas;
+  Can = this->Canvas;
   Disp = std::make_shared<TDisplayText> (Can);
 }
 //---------------------------------------------------------------------------
@@ -89,6 +89,12 @@ void __fastcall TfrmMain::Button2Click(TObject *Sender)
   Stor->AddWord("дело");
   Stor->AddSpace();
   Stor->AddWord("тест");
+  Stor->AddSpace();
+  Stor->AddWord("зло");
+  Stor->AddSpace();
+  Stor->AddWord("добро");
+  Stor->AddSpace();
+  Stor->AddWord("спасибо");
   //PrintText ();
   Disp->Start(Stor);
 }

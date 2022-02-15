@@ -25,28 +25,30 @@ void TDisplayText::LoadBuf() {
   bool stop = false;
   int x = 10;
   int y = 10;
+  int l = 0;
   Can->Font->Size = 30;
+  int LineHeigth = Can->TextHeight("T");;
   String w;
-  int pos;
   bool space = false;
   Words.clear();
   int ind = 0;
   int TexWidth = 0;
 
+  Can->FillRect(Can->ClipRect);
   for (int i = StartInd; i < Stor->GetWordCount() ; i++) {
 	  w   = Stor->GetWord(i)->GetText();
-	  pos = Stor->GetWord(i)->GetPos() ;
-
 	  Words[ind] = new TWordInfo(this, w);
 	  TexWidth = Words[ind]->GetWidth();
 	  /* проверка вмещается ли.. */
-	  Words[ind]->SetPos(x, y);
+	  if ( (x + TexWidth) > FildWidth()) {
+		x = 10;
+		l++;
+		y += LineHeigth + 10;
+	  }
+	  Words[ind]->SetPos(x, y, l);
 	  Words[ind]->DisplayWord();
 	  x += TexWidth;
-
 	  ind++;
-
-
   }
 };
 
