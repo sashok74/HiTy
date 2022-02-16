@@ -3,6 +3,7 @@
 #pragma hdrstop
 
 #include "uBuf.h"
+#include "uTxtStor.h"
 
 
 void TWordInfo::DisplayWord() {
@@ -46,12 +47,14 @@ void TDisplayText::LoadBuf() {
 		y += LineHeigth + 10;
 	  }
 	  Words[ind]->SetPos(x, y, l);
+	  Stor->GetWord(i)->AddCallback(std::bind(TWordInfo::SetIdetntPos, Words[ind], std::placeholders::_1));
 	  Words[ind]->DisplayWord();
 	  x += TexWidth;
 	  ind++;
   }
 };
 
+//Foo::someCallbackName callBack = std::bind(&Bar::someOtherFunction, &bar, std::placeholders::_1);
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

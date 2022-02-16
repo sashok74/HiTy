@@ -6,6 +6,7 @@
 #include <Vcl.Graphics.hpp>
 #include <memory>
 #include <map>
+#include <functional>
 #include "uTxtStor.h"
 
 #define NO_UDENT -1
@@ -31,6 +32,7 @@ class TWordInfo {
 	  };
 	  int GetWidth();
 	  void DisplayWord();
+	  void SetIdetntPos( int i) {IdentPos = i;};
 	  void SetPos (const int X, const int Y, const int newLine) {Left = X; Top = Y; Line = newLine;};
 };
 typedef std::shared_ptr<TWordInfo> PWordInfo;

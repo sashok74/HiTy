@@ -29,7 +29,6 @@ __published:	// IDE-managed Components
 	TMemo *Memo;
 	TButton *Button1;
 	TButton *Button2;
-	TImage *OutField;
 	TLabel *Label1;
 	void __fastcall btnOptnFileClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);

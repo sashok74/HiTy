@@ -3,6 +3,7 @@
 #ifndef uTxtStorH
 #define uTxtStorH
 #include <memory>
+#include <functional>
 #include <map>
 #include <set>
 
@@ -13,24 +14,29 @@
 
 enum TWordStaus {wsPrinted = 1, wsPrinting = 2, wsReady = 0, wsError = 3};
 
+
 class TWord
 {
+  using TCallback = std::function<void(int)>;
   private:
-    String w;
-    bool isVk;
-    bool isTab;
-    TWordStaus Status;
-    int ChPos;
-    int Len;
+	String w;
+	bool isVk;
+	bool isTab;
+	TWordStaus Status;
+	int ChPos;
+	int Len;
+	TCallback callBack;
   public:
-    TWord() :
-        Status { wsReady }, ChPos { 1 }, Len { 0 }, isVk { false }, isTab {
-            false
-        } {};
-    void Init(const String NewWord);
-    TWordStaus TypeChar(wchar_t in);
-    int GetPos()
-    {
+	TWord() :
+		Status { wsReady }, ChPos { 1 }, Len { 0 }, isVk { false }, isTab {
+			false
+		} {};
+	void Init(const String NewWord);
+	void AddCallback(int, TCallback);
+
+	TWordStaus TypeChar(wchar_t in);
+	int GetPos()
+	{
         return ChPos;
     };
     String GetText()

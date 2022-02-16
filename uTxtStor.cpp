@@ -20,6 +20,12 @@ void TWord::Init(const String NewWord)
 	Len = w.Length();
 }
 
+void TWord::AddCallback(int, TCallback cb) {callBack = cb;};
+
+/*
+https://www.stackfinder.ru/questions/57904835/using-stdbind-and-stdfunction-to-use-a-class-member-function-as-callback-for
+*/
+
 TWordStaus TWord::TypeChar(wchar_t in)
 {
    bool res = (w[ChPos] == in);
@@ -33,6 +39,7 @@ TWordStaus TWord::TypeChar(wchar_t in)
 
    if (res) ChPos++;
    if (ChPos > Len) Status = wsPrinted;
+   callBack(ChPos);
    return Status;
 }
 
