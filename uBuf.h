@@ -11,7 +11,8 @@
 
 #define NO_UDENT -1
 class TDisplayText;
-typedef std::shared_ptr<TDisplayText> PDisplayText;
+using PDisplayText = std::shared_ptr<TDisplayText>;
+
 
 class TWordInfo {
  private:
@@ -32,10 +33,10 @@ class TWordInfo {
 	  };
 	  int GetWidth();
 	  void DisplayWord();
-	  void SetIdetntPos( int i) {IdentPos = i;};
+	  void SetIdetntPos( int i);
 	  void SetPos (const int X, const int Y, const int newLine) {Left = X; Top = Y; Line = newLine;};
 };
-typedef std::shared_ptr<TWordInfo> PWordInfo;
+using PWordInfo = std::shared_ptr<TWordInfo> ;
 
 
 class TDisplayText {

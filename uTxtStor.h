@@ -32,7 +32,7 @@ class TWord
 			false
 		} {};
 	void Init(const String NewWord);
-	void AddCallback(int, TCallback);
+	void AddCallback(TCallback);
 
 	TWordStaus TypeChar(wchar_t in);
 	int GetPos()
@@ -48,10 +48,11 @@ class TWord
         return Status;
     };
 };
-typedef std::shared_ptr<TWord> PWords;
+using PWords = std::shared_ptr<TWord>;
 
 class TStor
 {
+
 	private:
 		int WordCount;
 		int Pos;

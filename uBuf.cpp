@@ -14,6 +14,22 @@ void TWordInfo::DisplayWord() {
   Can->Font->Color = saveColor;
 }
 
+void TWordInfo::SetIdetntPos( int i) {
+  int PrenIdentPos = IdentPos == 0 ? 1:IdentPos;
+  IdentPos = i;
+  String wb = w.SubString(1,IdentPos-1);
+  String wi = w.SubString(IdentPos,1);
+  TCanvas* Can = Disp->GetCanvas();
+  TColor saveColor = Can->Font->Color;
+  Can->Font->Color = Color;
+  Can->TextOut(Left, Top, wb);
+  Can->Font->Color = clRed;
+  Can->TextOut(Left + Can->TextWidth(wb), Top, wi);
+  Can->Font->Color = saveColor;
+
+};
+
+
 int TWordInfo::GetWidth() {
   return Disp->GetCanvas()->TextWidth(w);
 }
@@ -37,6 +53,7 @@ void TDisplayText::LoadBuf() {
 
   Can->FillRect(Can->ClipRect);
   for (int i = StartInd; i < Stor->GetWordCount() ; i++) {
+	  using std::placeholders::_1;
 	  w   = Stor->GetWord(i)->GetText();
 	  Words[ind] = new TWordInfo(this, w);
 	  TexWidth = Words[ind]->GetWidth();
@@ -47,7 +64,8 @@ void TDisplayText::LoadBuf() {
 		y += LineHeigth + 10;
 	  }
 	  Words[ind]->SetPos(x, y, l);
-	  Stor->GetWord(i)->AddCallback(std::bind(TWordInfo::SetIdetntPos, Words[ind], std::placeholders::_1));
+	  /* добавит Колбэк для каждого слово происходит на печать символа */
+	  Stor->GetWord(i)->AddCallback(std::bind(&TWordInfo::SetIdetntPos, Words[ind], _1));
 	  Words[ind]->DisplayWord();
 	  x += TexWidth;
 	  ind++;

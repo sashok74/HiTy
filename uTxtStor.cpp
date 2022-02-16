@@ -20,7 +20,7 @@ void TWord::Init(const String NewWord)
 	Len = w.Length();
 }
 
-void TWord::AddCallback(int, TCallback cb) {callBack = cb;};
+void TWord::AddCallback(TCallback cb) {callBack = cb;};
 
 /*
 https://www.stackfinder.ru/questions/57904835/using-stdbind-and-stdfunction-to-use-a-class-member-function-as-callback-for
