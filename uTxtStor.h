@@ -35,18 +35,10 @@ class TWord
 	void AddCallback(TCallback);
 
 	TWordStaus TypeChar(wchar_t in);
-	int GetPos()
-	{
-        return ChPos;
-    };
-    String GetText()
-    {
-        return w;
-    };
-    TWordStaus GetStatus()
-    {
-        return Status;
-    };
+	int GetPos() { return ChPos;};
+	void SetPos(int);
+	String GetText() {return w;};
+	TWordStaus GetStatus() {return Status;};
 };
 using PWords = std::shared_ptr<TWord>;
 

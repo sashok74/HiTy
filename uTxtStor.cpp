@@ -43,6 +43,12 @@ TWordStaus TWord::TypeChar(wchar_t in)
    return Status;
 }
 
+void TWord::SetPos(int newPos)
+{
+   ChPos = newPos ;
+   callBack(ChPos);
+}
+
 
 void TStor::AddWord(String s)
 {
@@ -72,7 +78,10 @@ int  TStor::TypeChar(wchar_t c) {
    return Pos;
 
    if (Words[Pos]->TypeChar(c) == wsPrinted) {
-	 Pos++;
+	 if (Pos < WordCount - 1) {
+		 Pos++;
+		 Words[Pos]->SetPos(1);
+	 }
    }
    return Pos;
 }

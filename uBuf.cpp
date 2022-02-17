@@ -21,11 +21,14 @@ void TWordInfo::SetIdetntPos( int i) {
   String wi = w.SubString(IdentPos,1);
   TCanvas* Can = Disp->GetCanvas();
   TColor saveColor = Can->Font->Color;
+  TFontStyles saveStyle = Can->Font->Style;
   Can->Font->Color = Color;
   Can->TextOut(Left, Top, wb);
-  Can->Font->Color = clRed;
+  Can->Font->Style  = TFontStyles() << fsUnderline;
+  Can->Font->Color = clNavy ;
   Can->TextOut(Left + Can->TextWidth(wb), Top, wi);
   Can->Font->Color = saveColor;
+  Can->Font->Style  = saveStyle;
 
 };
 
